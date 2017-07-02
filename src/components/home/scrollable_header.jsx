@@ -26,7 +26,6 @@ export default class ScrollableHeader extends React.Component {
   }
 
   render(){
-    console.log(this.state.fixed)
     return (
       <div ref={el => this.placeholder = el} className={this.state.fixed ? 'placeholder' : ''}>
         <div className={`scrollable-header ${this.state.fixed ? 'fixed' : ''}`} ref={el => this.header = el}>
