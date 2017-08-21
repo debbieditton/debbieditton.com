@@ -1,60 +1,50 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './home.scss';
 import DebbieLogo from './debbie_logo';
 import ScrollableHeader from './scrollable_header';
 import InfoSection from './info_section';
 import DebbieFooter from './debbie_footer';
+import request from 'superagent';
+import secrets from '../../secrets';
+import * as BlogpostActions from '../../actions/blogpost';
 
-export default class Home extends React.Component {
+const select = ({blogpost}) => ({
+  posts: blogpost.posts
+});
+
+export class Home extends React.Component {
+
+  componentWillMount() {
+    this.fetchPosts().then((res) => {
+      this.props.loadPosts(res.body.items);
+    });
+  }
+
+  async fetchPosts() {
+    return await request.get(
+      `https://www.googleapis.com/blogger/v3/blogs/7907262339682456800/posts?key=${secrets.apiKey}`
+    );
+  }
+
   render(){
+    const firstPost = this.props.posts[0];
+    if (!firstPost) {
+      return <div>Loading...</div>;
+    } // assume there is a post
     return (
       <div>
         <DebbieLogo />
         <ScrollableHeader />
         <InfoSection
-          title="Learn to Sing"
+          title={firstPost.title}
           leftContent={
             <img
-              alt="signing"
-              className="singing"
-              src="https://i.ytimg.com/vi/n_ATwl2uvfA/maxresdefault.jpg"
+              src={firstPost.image}
             />
           }
           rightContent={
-            <div className="text-block border-left">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-          }
-        />
-        <InfoSection
-          title="Prepare for Auditions"
-          leftContent={
-            <div className="text-block border-right">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-          }
-          rightContent={
-            <img
-              alt="signing"
-              className="singing"
-              src="http://www.musicnotesacademy.com/wp-content/uploads/MNA-singing-lessons-600x400.jpg"
-            />
-          }
-          alignRight
-        />
-        <InfoSection
-          title="Have Fun"
-          leftContent={
-            <img
-              alt="signing"
-              className="singing"
-              src="https://s3-ap-southeast-2.amazonaws.com/cae-wp-user-uploads/app/uploads/2015/10/14034848/PerfArts-Singing_banner.jpg"
-            />
-          }
-          rightContent={
-            <div className="text-block border-left">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
+            firstPost.getReactComponent()
           }
         />
         <DebbieFooter />
@@ -62,3 +52,5 @@ export default class Home extends React.Component {
     );
   }
 }
+
+export default connect(select, BlogpostActions)(Home);
