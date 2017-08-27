@@ -11,4 +11,4 @@ export default function visitor(node) {
       Component: node.nodeName,
     }
   }
-};
+};  
