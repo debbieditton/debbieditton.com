@@ -6,6 +6,8 @@ import About from './components/about/_about';
 import Services from './components/services/_services';
 import Blog from './components/blog/_blog';
 import Contact from './components/contact/_contact';
+import Blogpost from './components/blogpost/_blogpost';
+
 export default (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
@@ -14,6 +16,7 @@ export default (
       <Route path="services" component={Services} />
       <Route path="blog" component={Blog} />
       <Route path="contact" component={Contact} />
+      <Route path="blogpost/:id" component={Blogpost} />
     </Route>
   </Router>
 );

@@ -1,24 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './home.scss';
+import _ from 'lodash';
+import './blogpost.scss';
 import DebbieLogo from '../common/debbie_logo';
 import ScrollableHeader from '../common/scrollable_header';
-import BlogpostPreview from './blogpost_preview';
 import DebbieFooter from '../common/debbie_footer';
 import request from 'superagent';
 import secrets from '../../secrets';
 import * as BlogpostActions from '../../actions/blogpost';
+import FullPost from './full_post';
 
 const select = ({blogpost}) => ({
   posts: blogpost.posts
 });
 
-export class Home extends React.Component {
+export class Blogpost extends React.Component {
 
   componentWillMount() {
-    this.fetchPosts().then((res) => {
-      this.props.loadPosts(res.body.items);
-    });
+    if (!this.props.posts || !this.props.posts.length) {
+      this.fetchPosts().then((res) => {
+        this.props.loadPosts(res.body.items);
+      });
+    }
   }
 
   async fetchPosts() {
@@ -32,10 +35,9 @@ export class Home extends React.Component {
   }
 
   render(){
-    const firstPost = this.props.posts[0];
-    let component = null;
-    if (firstPost) {
-       component = <BlogpostPreview post={firstPost}/>
+    const post = _.find(this.props.posts, p => p.id === this.props.params.id);
+    if (!post) {
+      return <div>Loading...</div>;
     } // assume there is a post
 
     return (
@@ -43,7 +45,7 @@ export class Home extends React.Component {
         <DebbieLogo />
         <ScrollableHeader currentPath={this.props.location.pathname}/>
         <div className='main-content'>
-          { component }
+          <FullPost post={post} />
         </div>
         <DebbieFooter />
       </div>
@@ -51,4 +53,4 @@ export class Home extends React.Component {
   }
 }
 
-export default connect(select, BlogpostActions)(Home);
+export default connect(select, BlogpostActions)(Blogpost);

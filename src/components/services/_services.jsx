@@ -5,6 +5,10 @@ import DebbieFooter from '../common/debbie_footer';
 
 export default class Services extends React.Component {
 
+  componentDidMount() {
+    window.scrollTo(0,0);
+  }
+
   render(){
     return (
       <div>

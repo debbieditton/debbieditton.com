@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import { hashHistory } from 'react-router';
 export default class BlogpostPreview extends React.Component {
   render(){
     return (
@@ -14,7 +15,12 @@ export default class BlogpostPreview extends React.Component {
           <h3>{this.props.post.title}</h3>
           {this.props.post.getReactComponent()}
           <div className="fade">
-            <div className="read-more">Read More</div>
+            <div
+              className="read-more"
+              onClick={() => hashHistory.push(`/blogpost/${this.props.post.id}`)}
+            >
+              Read More
+            </div>
           </div>
         </div>
         <div style={{clear: 'both'}} />

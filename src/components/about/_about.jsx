@@ -4,7 +4,10 @@ import ScrollableHeader from '../common/scrollable_header';
 import DebbieFooter from '../common/debbie_footer';
 
 export default class About extends React.Component {
-
+  componentDidMount() {
+    window.scrollTo(0,0);
+  }
+  
   render(){
     return (
       <div>
