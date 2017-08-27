@@ -17,7 +17,7 @@ export default class ScrollableHeader extends React.Component {
     {text: 'DEBBIE', to: '/about'},
     {text: 'SERVICES', to: '/services'},
     {text: 'BLOG', to: '/blog'},
-    {text: 'CONTACT', to: '/contact'}
+    // {text: 'CONTACT', to: '/contact'}
   ]
 
   componentDidMount(){

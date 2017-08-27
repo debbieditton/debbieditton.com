@@ -1,0 +1,24 @@
+$primary:#97d6d5; 
+$header-font: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+
+.service {
+  margin-top: 50px;
+  .name {
+    font-family: $header-font;
+    width: 300px;
+    text-align: right;
+    float: right;
+    font-size: .8em;  
+    h3 {
+      margin: 0px;
+      color: $primary;
+    }
+  }
+  .description {
+    width: 300px;
+    margin-left: 40px;
+    float: right;
+  }
+}
+
+
