@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore } from 'redux';
 import { combineReducers } from 'redux';
 import blogpost from '../reducers/blogpost';
 const rootReducer = combineReducers({

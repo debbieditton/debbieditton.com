@@ -1,0 +1,63 @@
+@mixin smooth {
+  transition: all ease .2s;
+}
+
+$primary:#97d6d5; 
+$header-font: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+
+.dd-logo {
+  width: 800px;
+  margin: auto;
+  display: block;
+}
+
+.scrollable-header {
+  padding: 10px 180px;
+  background-color:#696863;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  color: white;
+  &.fixed {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 999;
+  }
+}
+
+.header-item {
+  background-color: #696863;
+  color:$primary;
+  width: 20%;
+  text-align: center;
+  display: inline-block;
+  font-family: $header-font;
+  cursor: pointer;
+  @include smooth;
+  &.selected {
+    background-color: #444444;
+  }
+  &:hover {
+    background-color: #444444;
+  }
+}
+
+
+
+.main-content {
+  padding: 0 200px 200px;
+}
+
+.debbie-footer {
+  background-color: #696863;
+  padding: 20px 0px;
+  h3 {
+    text-align: center;
+    color: $primary;
+    margin: 0px;
+    font-family: $header-font;
+  }
+  div {
+    text-align: center;
+  }
+}
