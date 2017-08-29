@@ -1,3 +1,5 @@
+#!/bin/sh
+
 cd docs
 git init
 git remote add origin git@github.com:debbiedittonvoice/debbiedittonvoice.github.io.git

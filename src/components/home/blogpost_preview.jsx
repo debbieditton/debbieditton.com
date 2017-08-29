@@ -13,7 +13,7 @@ export default class BlogpostPreview extends React.Component {
         <div className="blog-preview-text">
           <h5>{moment(this.props.post.published).format('LL')}</h5>
           <h3>{this.props.post.title}</h3>
-          {this.props.post.getReactComponent()}
+          {this.props.post.getReactComponent('noImage')}
           <div className="fade">
             <div
               className="read-more"

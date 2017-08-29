@@ -1,5 +1,5 @@
 import dangerouslyAtomicHtml from 'dangerously-atomic-html';
-import visitor from './visitor';
+import * as visitors from './visitor';
 
 export default class BlogPost {
   constructor(apiBlogPost) {
@@ -18,7 +18,7 @@ export default class BlogPost {
     console.log(this.image);
   }
 
-  getReactComponent() {
-    return dangerouslyAtomicHtml(this.content, visitor);
+  getReactComponent(vistorType = 'visitor') {
+    return dangerouslyAtomicHtml(this.content, visitors[vistorType]);
   }
 }
