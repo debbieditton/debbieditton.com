@@ -1,13 +1,14 @@
 import React from 'react';
 import moment from 'moment';
 import { hashHistory } from 'react-router';
+import pic from '../../dd.jpg';
 export default class BlogpostPreview extends React.Component {
   render(){
     return (
       <div className="blog-preview">
         <div className="blog-image">
           <img
-            src={this.props.post.image}
+            src={this.props.post.image || pic}
           />
         </div>
         <div className="blog-preview-text">

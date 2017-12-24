@@ -1,4 +1,4 @@
-$primary:#97d6d5; 
+$primary:#97d6d5;
 $header-font: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 
 .post {
@@ -8,4 +8,8 @@ $header-font: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
     color: $primary;
     font-family: $header-font;
   }
+}
+
+iframe {
+  border: none;
 }

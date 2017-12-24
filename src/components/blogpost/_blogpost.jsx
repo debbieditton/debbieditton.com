@@ -15,7 +15,10 @@ const select = ({blogpost}) => ({
 });
 
 export class Blogpost extends React.Component {
-
+  constructor() {
+    super()
+    this.state = { height: 100 };
+  }
   componentWillMount() {
     if (!this.props.posts || !this.props.posts.length) {
       this.fetchPosts().then((res) => {
@@ -34,6 +37,10 @@ export class Blogpost extends React.Component {
     window.scrollTo(0,0);
   }
 
+  resizeFrame(e) {
+
+  }
+
   render(){
     const post = _.find(this.props.posts, p => p.id === this.props.params.id);
     if (!post) {
@@ -46,6 +53,7 @@ export class Blogpost extends React.Component {
         <ScrollableHeader currentPath={this.props.location.pathname}/>
         <div className='main-content'>
           <FullPost post={post} />
+          {/* <iframe src={post.url} height={this.state.height} width="100%" onLoad={e => this.resizeFrame(e)}/> */}
         </div>
         <DebbieFooter />
       </div>
