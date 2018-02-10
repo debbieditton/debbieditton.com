@@ -1,5 +1,6 @@
 import React from 'react';
 import './common.scss';
+
 export default class DebbieFooter extends React.Component {
   render() {
     return (

@@ -1,4 +1,4 @@
-$primary:#97d6d5; 
+$primary:#97d6d5;
 $header-font: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 
 @mixin smooth {
@@ -66,4 +66,8 @@ $header-font: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
       }
     }
   }
+}
+
+.integrations {
+  margin-top: 100px;
 }

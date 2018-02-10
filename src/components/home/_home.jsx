@@ -5,6 +5,7 @@ import DebbieLogo from '../common/debbie_logo';
 import ScrollableHeader from '../common/scrollable_header';
 import BlogpostPreview from './blogpost_preview';
 import DebbieFooter from '../common/debbie_footer';
+import Integrations from './integrations';
 import request from 'superagent';
 import secrets from '../../secrets';
 import * as BlogpostActions from '../../actions/blogpost';
@@ -44,6 +45,9 @@ export class Home extends React.Component {
         <ScrollableHeader currentPath={this.props.location.pathname}/>
         <div className='main-content'>
           { component }
+          <div className="integrations">
+            <Integrations />
+          </div>
         </div>
         <DebbieFooter />
       </div>
